@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.books.dao.BookDao">
+
+    <select id="queryAll" resultType="Book">
+        select id,name,author,price,sales,stock,img from t_book order by id
+    </select>
+
+    <insert id="addBook" >
+        insert  into t_book(name, author, price, sales, stock, img) values (#{name}, #{author}, #{price}, #{sales}, #{stock}, #{img})
+    </insert>
+
+    <delete id="deleteBook" parameterType="String">
+        delete from t_book where id=#{id}
+    </delete>
+
+    <update id="updateBook" >
+        update t_book set name=#{name},author=#{author},price=#{price},sales=#{sales},stock=#{stock},img=#{img} where id=#{id}
+    </update>
+
+    <select id="likeBook" resultType="Book">
+        select id,name,author,price,sales,stock from t_book where name like '%${name}%'
+    </select>
+
+
+
+
+</mapper>
